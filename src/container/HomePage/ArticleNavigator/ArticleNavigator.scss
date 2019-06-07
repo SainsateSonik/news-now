@@ -1,0 +1,33 @@
+@import "../../../sass/variables.scss";
+
+.news-navigator {
+  .navigate {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: $container-padding-horizontal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    z-index: 50;
+
+    &.news-navigator__previous {
+      left: 0;
+      background: linear-gradient(to left, transparent, #fff);
+    }
+
+    &.news-navigator__next {
+      right: 0;
+      background: linear-gradient(to right, transparent, #fff);
+    }
+
+    i.fas {
+      padding: 12px 16px;
+      cursor: pointer;
+      border-radius: 50%;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s;
+    }
+  }
+}

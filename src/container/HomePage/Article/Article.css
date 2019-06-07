@@ -1,0 +1,12 @@
+.news-article {
+  width: calc(100vw - 2 * 120px);
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.news-article ~ .news-article {
+  margin-left: 240px;
+}
+/*# sourceMappingURL=Article.css.map */

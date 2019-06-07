@@ -1,0 +1,25 @@
+@import "../../sass/variables.scss";
+
+header {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $header-height;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: $app-padding;
+  justify-content: space-between;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16);
+
+  .logo {
+    color: rgba(151, 151, 151, 0.97);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,11 @@
+@import "../../../sass/variables.scss";
+
+.news-article {
+  width: calc(100vw - 2 * #{$container-padding-horizontal});
+  height: 100%;
+  display: flex;
+}
+
+.news-article ~ .news-article {
+  margin-left: 2 * $container-padding-horizontal;
+}

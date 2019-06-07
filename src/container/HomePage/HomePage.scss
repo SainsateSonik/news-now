@@ -1,0 +1,17 @@
+@import "../../sass/variables.scss";
+
+.home {
+  margin-top: $header-height;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  .top-news {
+    width: fit-content;
+    padding: $container-padding-vertical $container-padding-horizontal;
+    height: calc(100vh - #{$header-height} - #{$footer-height});
+    display: flex;
+    align-items: center;
+    transition: transform 0.4s ease-in-out;
+  }
+}
