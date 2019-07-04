@@ -13,7 +13,7 @@ import HomePage from "./container/HomePage/HomePage";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
-const KEY = "i7wBfGA1uIKkNqoRPfw8sxQGcWXe8AVq";
+const KEY = process.env.REACT_APP_API_KEY;
 
 function App() {
   const [state, dispatch] = useReducer(
