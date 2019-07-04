@@ -1,17 +1,16 @@
-@import "../../sass/variables.scss";
+@import "../../static/sass/variables.scss";
 
 .home {
   margin-top: $header-height;
-  width: 100%;
+  width: 100vw;
   overflow: hidden;
   position: relative;
 
-  .top-news {
-    width: fit-content;
-    padding: $container-padding-vertical $container-padding-horizontal;
-    height: calc(100vh - #{$header-height} - #{$footer-height});
-    display: flex;
-    align-items: center;
-    transition: transform 0.4s ease-in-out;
+  @media (max-width: $mobile-landscape) {
+    margin-top: $header-height - 20px;
+  }
+
+  @media (max-width: $mobile-portrait) {
+    margin-top: $header-height - 10px;
   }
 }

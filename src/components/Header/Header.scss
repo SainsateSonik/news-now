@@ -1,4 +1,6 @@
-@import "../../sass/variables.scss";
+@import "../../static/sass/variables.scss";
+
+$cross-transition-time: 0.5s;
 
 header {
   position: fixed;
@@ -21,5 +23,187 @@ header {
     font-size: 20px;
     font-weight: 600;
     cursor: pointer;
+  }
+
+  .news-context {
+    &__current {
+      position: relative;
+      z-index: 100;
+      width: 160px;
+      height: 26px;
+      font-size: 1em;
+      color: rgba(151, 151, 151, 0.97);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+      cursor: pointer;
+      transition: all 0.5s;
+
+      span {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: right 0.5s;
+      }
+
+      .cross {
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 14px;
+        width: 15px;
+        opacity: 0;
+        transition: $cross-transition-time;
+
+        .cross__wrapper {
+          position: relative;
+          height: 100%;
+
+          &::before,
+          &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 1.5px;
+            background-color: yellow;
+            transform-origin: right;
+            transition: $cross-transition-time;
+          }
+
+          &::before {
+            top: 0;
+            transform: rotate(0deg);
+          }
+
+          &::after {
+            bottom: 0;
+            transform: rotate(0deg);
+          }
+        }
+      }
+
+      &.show-categories {
+        width: 220px;
+        color: #fff;
+        border-bottom-color: #fff;
+
+        span {
+          right: 30px;
+
+          & ~ .cross {
+            right: 5px;
+            opacity: 1;
+
+            .cross__wrapper {
+              &::before {
+                transform: rotate(-45deg);
+              }
+
+              &::after {
+                transform: rotate(45deg);
+              }
+            }
+          }
+        }
+
+        & ~ ul.news-context__options {
+          transform: translateX(0);
+        }
+      }
+    }
+
+    &__options {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translateX(100%);
+      height: 100vh;
+      padding: 20px;
+      padding-top: calc(#{$header-height} + 20px);
+      color: #ccc;
+      background-color: rgb(10, 10, 10);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 8px 30px;
+      transition: all 0.3s ease-in-out;
+
+      li {
+        list-style: none;
+        padding: 5px 10px;
+        width: 130px;
+
+        span {
+          position: relative;
+          font-size: 0.9em;
+          cursor: pointer;
+
+          &:hover {
+            color: yellow;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: $mobile-landscape) {
+    height: $header-height - 20px;
+    padding: $app-padding - 10px;
+    box-shadow: none;
+
+    .logo {
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+
+    .news-context {
+      &__current {
+        width: 140px;
+        font-size: 0.9em;
+
+        &.show-categories {
+          & ~ ul.news-context__options {
+            width: 100vw;
+            transform: translateX(0);
+          }
+        }
+      }
+
+      &__options {
+        padding-top: calc(#{$header-height} - 10px);
+        grid-template-columns: repeat(4, 1fr);
+        transition: all 0.2s ease-in-out;
+      }
+    }
+  }
+
+  @media (max-width: $mobile-portrait) {
+    height: $header-height - 10px;
+    padding: $app-padding - 10px;
+    box-shadow: none;
+
+    .logo {
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+
+    .news-context {
+      &__current {
+        width: 140px;
+        font-size: 0.9em;
+
+        &.show-categories {
+          & ~ ul.news-context__options {
+            width: 100vw;
+            transform: translateX(0);
+          }
+        }
+      }
+
+      &__options {
+        padding-top: $header-height;
+        grid-template-columns: 1fr 1fr;
+        transition: all 0.2s ease-in-out;
+      }
+    }
   }
 }

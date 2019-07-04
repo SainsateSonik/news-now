@@ -1,8 +1,8 @@
 import React from "react";
-import "./ArticleContent.css";
+import "./ArticleContent.scss";
 
 const ArticleContent = ({ title, description, reporter, url }) => {
-  const reporterLine = reporter ? (
+  const articleReporter = reporter ? (
     <p className="news-repoter">
       <em>{`- "${reporter}"`}</em>
     </p>
@@ -12,7 +12,7 @@ const ArticleContent = ({ title, description, reporter, url }) => {
     <section className="news-content">
       <h2 className="news-title">{title}</h2>
       <p className="news-abstract">{description}</p>
-      {reporterLine}
+      {articleReporter}
       <a
         href={url}
         rel="noopener noreferrer"
