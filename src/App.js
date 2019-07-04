@@ -9,8 +9,9 @@ import {
   setCurrentNewsContext
 } from "./store/actionCreators/topStories";
 
-import HomePage from "./container/HomePage/HomePage";
 import Header from "./components/Header/Header";
+import Spinner from "./components/Spinner/Spinner";
+import HomePage from "./container/HomePage/HomePage";
 import Footer from "./components/Footer/Footer";
 
 const KEY = process.env.REACT_APP_API_KEY;
@@ -21,10 +22,19 @@ function App() {
     topStoriesInitialState
   );
   const [currentArticle, setCurrentArticle] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchNewsArticles("home");
   }, []);
+
+  const newsContent = (loading && <Spinner loading={loading} />) || (
+    <HomePage
+      currentArticle={currentArticle}
+      setCurrentArticle={setCurrentArticle}
+      getCategoryName={getCategoryName}
+    />
+  );
 
   return (
     <Provider value={{ state, dispatch }}>
@@ -33,11 +43,7 @@ function App() {
         selectNewsCategory={selectNewsCategory}
         gotoHome={gotoHome}
       />
-      <HomePage
-        currentArticle={currentArticle}
-        setCurrentArticle={setCurrentArticle}
-        getCategoryName={getCategoryName}
-      />
+      {newsContent}
       <Footer />
     </Provider>
   );
@@ -45,12 +51,14 @@ function App() {
   // ***************************************************************************************
 
   function fetchNewsArticles(category) {
+    setLoading(true);
     fetch(
       `https://api.nytimes.com/svc/topstories/v2/${category}.json?api-key=${KEY}`
     )
       .then(response => response.json())
       .then(({ results }) => {
         dispatch(setNewsContent(category, results));
+        setLoading(false);
       })
       .catch(console.error);
   }
