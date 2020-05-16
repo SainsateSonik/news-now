@@ -9,13 +9,13 @@ const Header = ({ selectNewsCategory, toggleCategories, gotoHome }) => {
   const {
     state: {
       sections: newsSections = [],
-      news: { current }
-    }
+      news: { current },
+    },
   } = useContext(Context);
 
-  const newsOptions = newsSections.map(section => (
-    <li key={section}>
-      <span onClick={selectNewsCategory.bind(null, section)}>{section}</span>
+  const newsOptions = newsSections.map(({ label, value }) => (
+    <li key={value}>
+      <span onClick={selectNewsCategory.bind(null, value)}>{label}</span>
     </li>
   ));
 

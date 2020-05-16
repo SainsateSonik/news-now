@@ -4,13 +4,13 @@ import "./Article.scss";
 import ArticleImage from "./ArticleImage/ArticleImage";
 import ArticleContent from "./ArticleContent/ArticleContent";
 
-const Article = props => {
+const Article = (props) => {
   const {
     multimedia,
     title,
     url,
     byline: reporter,
-    abstract: description
+    abstract: description,
   } = props.article;
 
   return (

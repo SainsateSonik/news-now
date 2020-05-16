@@ -4,7 +4,16 @@ import "./ArticleImage.scss";
 import noImage from "../../../../../static/images/not-available.png";
 
 const ArticleImage = ({ images }) => {
-  const { url, caption } = images.length ? images[images.length - 1] : {};
+  let data = {};
+  if (images) {
+    data = images.reduce((acc, imageData) => {
+      const { height, type } = imageData;
+      if (type === "image" && height > acc.height) acc = imageData;
+      return acc;
+    });
+  }
+
+  const { url, caption } = data;
   const backCover = caption ? "article-image__back-drop-roll-up" : null;
 
   return (
@@ -23,7 +32,7 @@ const ArticleImage = ({ images }) => {
       backgroundImage: `url(${imageLink || noImage})`,
       backgroundSize: imageLink ? "cover" : "contain",
       backgroundRepeat: "no-repeat",
-      backgroundPositionX: "center"
+      backgroundPositionX: "center",
     };
   }
 };
